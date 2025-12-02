@@ -83,7 +83,7 @@ a:hover {
     min-height: 100%;
     transform: translate(-50%, -50%);
     z-index: 1;
-    opacity: 0.35; /* Subtle darkening for the nonchalant, cinematic effect */
+    opacity: 0.35; 
 }
 
 .hero-content {
@@ -97,7 +97,7 @@ a:hover {
 }
 
 .nbj-title {
-    font-size: clamp(3rem, 6vw, 7rem); /* Responsive title size */
+    font-size: clamp(3rem, 6vw, 7rem); 
     margin: 0 0 10px 0;
     color: var(--color-light);
     letter-spacing: clamp(5px, 1.5vw, 15px);
@@ -125,7 +125,7 @@ a:hover {
 .show-list {
     display: flex;
     flex-direction: column;
-    gap: 1px; /* Space between the show items */
+    gap: 1px;
     max-width: 800px;
     margin: 0 auto;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -133,7 +133,7 @@ a:hover {
 
 .show-item {
     display: grid;
-    grid-template-columns: 150px 1fr 150px 120px; /* Date | Headliner | Venue | CTA */
+    grid-template-columns: 150px 1fr 150px 120px;
     align-items: center;
     padding: 20px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -141,7 +141,7 @@ a:hover {
 }
 
 .show-item:hover {
-    background-color: rgba(199, 154, 70, 0.05); /* Subtle gold hover */
+    background-color: rgba(199, 154, 70, 0.05); 
 }
 
 .show-date {
@@ -188,12 +188,22 @@ a:hover {
     height: 350px;
     position: relative;
     overflow: hidden;
-    filter: grayscale(100%); /* High-contrast B&W aesthetic */
+    filter: grayscale(100%);
     transition: all 0.5s ease;
 }
 
+/* FIX: Specific classes for each artist card using simplified paths */
+.artist-ice {
+    background-image: url('ice.jpg'); 
+}
+
+.artist-enriq {
+    background-image: url('enriq.jpg');
+}
+/* END FIX */
+
 .artist-card:hover {
-    filter: grayscale(0%); /* Color reveal on hover */
+    filter: grayscale(0%);
     transform: scale(1.02);
 }
 
@@ -280,11 +290,11 @@ footer {
 /* --- Responsiveness for Smaller Screens --- */
 @media (max-width: 900px) {
     .show-item {
-        grid-template-columns: 100px 1fr 1fr; /* Adjust columns for shows */
+        grid-template-columns: 100px 1fr 1fr;
         padding: 15px 0;
     }
     .show-venue, .show-cta {
-        display: none; /* Hide for very small screens */
+        display: none;
     }
     .show-headliner {
         grid-column: 2 / span 2;
@@ -294,7 +304,7 @@ footer {
     }
 
     .artist-grid {
-        grid-template-columns: 1fr; /* Single column layout for artists */
+        grid-template-columns: 1fr;
     }
     .artist-wide, .artist-tall {
         grid-column: span 1;
