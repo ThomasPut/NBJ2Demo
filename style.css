@@ -1,0 +1,312 @@
+/* --- Global Styles & Variables --- */
+:root {
+    --color-dark: #0A0A0A; /* Deep Black */
+    --color-light: #F5F5DC; /* Cream/Off-White */
+    --color-accent: #C79A46; /* Muted Brass/Gold */
+    --font-primary: 'Montserrat', sans-serif;
+    --spacing-large: 80px;
+}
+
+/* Base Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    line-height: 1.6;
+}
+
+a {
+    color: var(--color-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-accent);
+}
+
+/* --- Section Formatting --- */
+.section-container {
+    padding: var(--spacing-large) 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--color-accent);
+    letter-spacing: 5px;
+}
+
+/* --- Call-to-Action Buttons --- */
+.main-cta {
+    display: inline-block;
+    padding: 12px 30px;
+    margin-top: 20px;
+    border: 2px solid var(--color-accent);
+    background-color: transparent;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.main-cta:hover {
+    background-color: var(--color-accent);
+    color: var(--color-dark);
+}
+
+/* 1. HERO SECTION */
+#hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    opacity: 0.35; /* Subtle darkening for the nonchalant, cinematic effect */
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    text-align: center;
+    width: 90%;
+}
+
+.nbj-title {
+    font-size: clamp(3rem, 6vw, 7rem); /* Responsive title size */
+    margin: 0 0 10px 0;
+    color: var(--color-light);
+    letter-spacing: clamp(5px, 1.5vw, 15px);
+    font-weight: 900;
+}
+
+.nbj-subtitle {
+    font-size: clamp(1rem, 2vw, 1.8rem);
+    font-weight: 300;
+    margin-bottom: 50px;
+    color: var(--color-light);
+    opacity: 0.8;
+}
+
+/* Navigation */
+.main-nav a {
+    font-size: 1.1rem;
+    padding: 0 25px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+/* 2. UPCOMING SHOWS SECTION */
+.show-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px; /* Space between the show items */
+    max-width: 800px;
+    margin: 0 auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.show-item {
+    display: grid;
+    grid-template-columns: 150px 1fr 150px 120px; /* Date | Headliner | Venue | CTA */
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.show-item:hover {
+    background-color: rgba(199, 154, 70, 0.05); /* Subtle gold hover */
+}
+
+.show-date {
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.show-headliner {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.show-venue {
+    font-weight: 300;
+    opacity: 0.7;
+}
+
+.show-cta {
+    justify-self: end;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    border: 1px solid var(--color-light);
+    padding: 8px 15px;
+}
+
+.show-cta:hover {
+    color: var(--color-dark);
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+/* 3. FEATURED MUSICIANS SECTION (Nonchalant Grid) */
+.artist-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.artist-card {
+    background-size: cover;
+    background-position: center;
+    height: 350px;
+    position: relative;
+    overflow: hidden;
+    filter: grayscale(100%); /* High-contrast B&W aesthetic */
+    transition: all 0.5s ease;
+}
+
+.artist-card:hover {
+    filter: grayscale(0%); /* Color reveal on hover */
+    transform: scale(1.02);
+}
+
+/* Custom sizes for the nonchalant grid layout */
+.artist-wide {
+    grid-column: span 2;
+}
+
+.artist-tall {
+    grid-row: span 2;
+    height: 100%;
+}
+
+.artist-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    width: 100%;
+    color: var(--color-light);
+}
+
+.artist-info h3 {
+    margin: 0;
+    font-weight: 900;
+    color: var(--color-accent);
+    letter-spacing: 1px;
+}
+
+.artist-info p {
+    font-weight: 300;
+}
+
+/* 4. ABOUT & CONTACT SECTION */
+.about-contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.about-nbj p {
+    font-weight: 300;
+    line-height: 1.8;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--color-light);
+    font-family: var(--font-primary);
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+/* 5. FOOTER */
+footer {
+    padding: 30px 5%;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+.social-links {
+    margin-top: 15px;
+}
+
+.social-icon {
+    display: inline-block;
+    font-size: 1.1rem;
+    padding: 0 15px;
+    color: var(--color-light);
+    font-weight: 700;
+}
+
+/* --- Responsiveness for Smaller Screens --- */
+@media (max-width: 900px) {
+    .show-item {
+        grid-template-columns: 100px 1fr 1fr; /* Adjust columns for shows */
+        padding: 15px 0;
+    }
+    .show-venue, .show-cta {
+        display: none; /* Hide for very small screens */
+    }
+    .show-headliner {
+        grid-column: 2 / span 2;
+    }
+    .show-date {
+        font-size: 0.9rem;
+    }
+
+    .artist-grid {
+        grid-template-columns: 1fr; /* Single column layout for artists */
+    }
+    .artist-wide, .artist-tall {
+        grid-column: span 1;
+        grid-row: span 1;
+        height: 300px;
+    }
+
+    .about-contact-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    .section-title {
+        margin-bottom: 40px;
+    }
+}
