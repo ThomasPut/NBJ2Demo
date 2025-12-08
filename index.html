@@ -13,69 +13,55 @@
 
     <header id="hero-section">
         <video autoplay muted loop playsinline id="background-video"> 
-            <source src="534104d012dd48fcb17b506a47cecc4e.mp4" type="video/mp4">
+            <source src="MicrosoftTeams-video.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
 
         <div class="hero-content">
-            <h1 class="nbj-title">NOTHING BUT JAZZ</h1>            
+            <h1 class="nbj-title">NOTHING BUT JAZZ</h1> 
             <nav class="main-nav">
                 <a href="#shows">SHOWS</a>
                 <a href="#artists">ARTISTS</a>
                 <a href="#about">ABOUT</a>
                 <a href="#contact">CONTACT</a>
             </nav>
+            <a href="#" class="main-cta header-cta">LISTEN NOW</a>
         </div>
     </header>
 
     <main>
         <section id="shows" class="section-container">
             <h2 class="section-title">UPCOMING SHOWS</h2>
-            <div class="show-list">
-                <article class="show-item">
-                    <span class="show-date">FRI. DEC 4</span> 
-                    <span class="show-headliner">The Ice Gonzalez Quintet</span>
-                    <span class="show-venue">ADKT</span>
-                </article>
-                <article class="show-item">
-                    <span class="show-date">FRI. DEC 11</span> 
-                    <span class="show-headliner">The Ice Gonzalez Quintet</span>
-                    <span class="show-venue">ADKT</span>
-                </article>
-                <article class="show-item">
-                    <span class="show-date">FRI. DEC 18</span> 
-                    <span class="show-headliner">The Ice Gonzalez Quintet</span>
-                    <span class="show-venue">ADKT</span>
-                </article>
-                <article class="show-item">
-                    <span class="show-date">FRI. DEC 31</span>
-                    <span class="show-headliner">New Year's Eve Jazz Gala</span>
-                    <span class="show-venue">ADKT</span>
-                </article>
-            </div>
+            <div class="show-list" id="monthly-shows">
+                </div>
         </section>
-
         <section id="artists" class="section-container">
-            <h2 class="section-title">The Ice Gonzalez Quintet</h2>
-            <div class="artist-grid">
-                <div class="artist-card artist-wide artist-ice"> 
-                    <div class="artist-info">
-                        <h3>Ice Gonzalez</h3>
+            <h2 class="section-title">THE ICE GONZALEZ QUINTET</h2>
+            <div class="artist-content-split">
+                <div class="artist-card artist-ice"> 
+                    <div class="artist-name-overlay">
+                        <h3>ISSCE GONZALEZ</h3>
                     </div>
                 </div>
             </div>
-        </section>
+            </section>
 
         <section id="about" class="section-container">
             <div class="about-contact-grid">
                 <div class="about-nbj">
-                    <h2 class="section-title">OUR PHILOSOPHY</h2>
+                    <h2 class="section-title-left">OUR PHILOSOPHY</h2>
                     <p>Nothing But Jazz is an emerging record label and brand dedicated to promoting and perpetuating the art form of jazz. Founded in 2022, our mission is to preserve the rich heritage of jazz while supporting a new generation of emerging talent. We excel in delivering extraordinary live performances that inspire the rhythm of your soul.</p>
                 </div>
-                <div id="contact" class="contact-form">
-                    <h2 class="section-title">Contact Us</h2>
-                    <h3>Management</h3>
-                    <p> Ted Dozier</br>Phone: (323)-864-4977</br>Email: Tddlefty@gmail.com</p>
+                <div id="contact" class="contact-info-block">
+                    <h2 class="section-title-left">CONTACT US</h2>
+                    <div class="contact-detail-item">
+                        <h3 class="contact-subheading">Management</h3>
+                        <p class="contact-details"> 
+                            **Ted Dozier** <br>
+                            Phone: (323) 864-4977 <br>
+                            Email: Tddlefty@gmail.com
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -86,23 +72,103 @@
     </footer>
 
     <script>
+        // VIDEO AUTOPLAY FIX (Mobile)
         const video = document.getElementById('background-video');
 
         function attemptPlay() {
             if (video.paused) {
-                // Attempt to play and handle potential errors (like browser blocking)
-                video.play().catch(error => {
-                    // Fail silently, as the browser will still await a user interaction
+                video.play().catch(error => {});
+            }
+        }
+        attemptPlay(); 
+        document.addEventListener('touchstart', attemptPlay, { once: true });
+        document.addEventListener('click', attemptPlay, { once: true });
+        
+        // --- Smooth Scrolling for Standard Anchors ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
                 });
+            });
+        });
+
+        // DYNAMIC SHOW DATE GENERATOR (Now removes past shows)
+        function populateMonthlyShows() {
+            const list = document.getElementById('monthly-shows');
+            
+            // Venue Hyperlink
+            const venueLink = `<a href="https://adktla.com/" target="_blank" rel="noopener noreferrer">ADKT</a>`;
+            
+            const showTemplate = (dayName, dateNumber, monthName, headliner, venue) => `
+                <article class="show-item">
+                    <span class="show-date">${dayName}. ${monthName} ${dateNumber}</span>
+                    <span class="show-headliner">${headliner}</span>
+                    <span class="show-venue">${venue}</span>
+                </article>
+            `;
+            
+            const today = new Date();
+            // Set today's time to midnight so that any show today is still included
+            today.setHours(0, 0, 0, 0); 
+            
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const datesArray = [];
+            const dayNames = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+            const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+
+            // Find all Thursdays (day index 4) in the current month
+            for (let i = 1; i <= daysInMonth; i++) {
+                const date = new Date(year, month, i);
+                date.setHours(0, 0, 0, 0); // Normalize time for comparison
+
+                // We want THURSDAYS (day index 4) AND the date must be today or in the future
+                if (date.getDay() === 4 && date >= today) { 
+                    datesArray.push({
+                        day: dayNames[date.getDay()],
+                        month: monthNames[date.getMonth()],
+                        dateNum: date.getDate(),
+                        headliner: "The Ice Gonzalez Quintet",
+                        venue: venueLink 
+                    });
+                }
+            }
+            
+            // --- Custom Show (New Year's Eve) ---
+            const nyeDate = new Date(year, 11, 31); // Month 11 is December
+            nyeDate.setHours(0, 0, 0, 0);
+
+            // Add the New Year's Eve show only if it is in the future
+            if (nyeDate >= today) {
+                datesArray.push({
+                    day: 'FRI',
+                    month: 'DEC',
+                    dateNum: 31,
+                    headliner: "New Year's Eve Jazz Gala",
+                    venue: venueLink
+                });
+            }
+            
+            // Clear existing content
+            list.innerHTML = ''; 
+
+            // Populate list with dynamic shows
+            if (datesArray.length === 0) {
+                 list.innerHTML = '<p style="text-align: center; font-style: italic; opacity: 0.7;">No upcoming shows this month. Check back soon!</p>';
+            } else {
+                 datesArray.forEach(show => {
+                     list.innerHTML += showTemplate(show.day, show.dateNum, show.month, show.headliner, show.venue);
+                 });
             }
         }
 
-        // 1. Try playing immediately (works if muted)
-        attemptPlay(); 
+        populateMonthlyShows();
 
-        // 2. Attach listeners for the first user interaction (click or tap)
-        document.addEventListener('touchstart', attemptPlay, { once: true });
-        document.addEventListener('click', attemptPlay, { once: true });
     </script>
 </body>
 </html>
