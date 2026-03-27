@@ -116,7 +116,7 @@
 
         .hero-content {
             position: absolute;
-            top: 50%;
+            top: 55%; 
             left: 50%;
             transform: translate(-50%, -50%); 
             z-index: 10;
@@ -126,9 +126,13 @@
 
         .nbj-title {
             font-size: clamp(3rem, 6vw, 7rem); 
-            margin-bottom: 40px; 
+            margin-bottom: 20px; 
             font-weight: 900;
             letter-spacing: clamp(5px, 1.5vw, 15px);
+        }
+
+        .header-cta {
+            margin-top: 25px;
         }
 
         /* --- NAVIGATION --- */
@@ -136,7 +140,7 @@
             display: flex;
             justify-content: center;
             position: absolute; 
-            top: 55%; 
+            top: 40px; 
             left: 50%;
             transform: translateX(-50%); 
             z-index: 15; 
@@ -144,11 +148,12 @@
         }
 
         .main-nav a {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             padding: 0 25px;
             letter-spacing: 2px;
             text-transform: uppercase;
             position: relative; 
+            font-weight: 700;
         }
 
         .main-nav a::after {
@@ -178,21 +183,28 @@
 
         .icon-bar { width: 100%; height: 3px; background-color: var(--color-accent); transition: 0.3s; }
 
-        /* --- SHOW LIST --- */
-        .show-list { max-width: 800px; margin: 0 auto; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        /* --- SHOW LIST (4 COLUMN) --- */
+        .show-list { max-width: 900px; margin: 0 auto; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        
         .show-item {
             display: grid;
-            grid-template-columns: 150px 1fr 150px; 
+            grid-template-columns: 80px 100px 1fr 180px; 
             align-items: center;
             padding: 20px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: 0.3s;
         }
-        .show-item:hover { background: rgba(255, 192, 0, 0.05); transform: translateY(-2px); }
-        .show-date { color: var(--color-accent); font-weight: 700; padding-left: 10px; }
-        .show-headliner { font-weight: 700; text-align: center; }
-        .show-venue { opacity: 0.7; text-align: right; padding-right: 10px; font-weight: 300; }
-        .show-venue a { color: var(--color-light); text-decoration: underline; }
+
+        .show-item:hover { background: rgba(255, 192, 0, 0.05); }
+        
+        .show-day { color: var(--color-accent); font-weight: 900; letter-spacing: 1px; }
+        .show-date-small { opacity: 0.6; font-size: 0.85rem; text-transform: uppercase; }
+        
+        .show-venue-name { font-weight: 700; font-size: 1.1rem; }
+        .show-venue-name a { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: rgba(255, 192, 0, 0.3); }
+        .show-venue-name a:hover { color: var(--color-accent); text-decoration-color: var(--color-accent); }
+
+        .show-time { text-align: right; color: var(--color-accent); font-weight: 400; font-size: 0.9rem; padding-right: 10px; }
 
         /* --- ARTIST CARD --- */
         .artist-card {
@@ -223,39 +235,30 @@
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 900px) {
             .menu-toggle { display: flex; }
-            
-            /* Burger Animation */
-            .menu-toggle.open .icon-bar:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
-            .menu-toggle.open .icon-bar:nth-child(2) { opacity: 0; }
-            .menu-toggle.open .icon-bar:nth-child(3) { transform: rotate(-45deg) translate(7px, -8px); }
-
-            .main-nav { 
-                display: none; 
-                flex-direction: column; 
-            }
-
-            /* Full screen mobile overlay */
+            .main-nav { display: none; }
             .main-nav.active {
                 display: flex !important; 
                 position: fixed !important; 
                 inset: 0 !important;
-                top: 0 !important; 
-                left: 0 !important;
-                transform: none !important;
-                width: 100vw !important;
-                height: 100vh !important;
                 background: rgba(10, 10, 10, 0.98); 
                 z-index: 1500; 
+                flex-direction: column;
                 justify-content: center; 
                 align-items: center;
+                transform: none;
+                top: 0; left: 0;
             }
-
-            .main-nav a { font-size: 2rem; padding: 20px; display: block; width: 100%; text-align: center; }
-
+            .main-nav a { font-size: 2rem; padding: 20px; text-align: center; }
             .about-contact-grid { grid-template-columns: 1fr; }
             .about-contact-grid::before { display: none; }
-            .show-item { grid-template-columns: 1fr; text-align: center; gap: 10px; }
-            .show-date, .show-venue, .section-title-left { text-align: center !important; padding: 0; }
+            .show-item { 
+                grid-template-columns: 1fr; 
+                text-align: center; 
+                gap: 5px; 
+                padding: 30px 0;
+            }
+            .show-time { text-align: center; padding: 0; margin-top: 5px; }
+            .section-title-left { text-align: center !important; }
         }
     </style>
 </head>
@@ -314,7 +317,7 @@
             <div class="about-contact-grid">
                 <div class="about-nbj">
                     <h2 class="section-title-left">OUR PHILOSOPHY</h2>
-                    <p>Nothing But Jazz is an emerging record label and brand dedicated to promoting and perpetuating the art form of jazz. Founded in 2022, our mission is to preserve the rich heritage of jazz while supporting a new generation of emerging talent. We excel in delivering extraordinary live performances that inspire the rhythm of your soul.</p>
+                    <p>Nothing But Jazz is an emerging record label and brand dedicated to promoting and perpetuating the art form of jazz. Founded in 2022, our mission is to preserve the rich heritage of jazz while supporting a new generation of emerging talent.</p>
                 </div>
                 <div id="contact" class="contact-info-block">
                     <h2 class="section-title-left">CONTACT US</h2>
@@ -332,7 +335,7 @@
     </main>
 
     <footer>
-        <p>© 2025 NOTHING BUT JAZZ RECORDS. All Rights Reserved.</p>
+        <p>© 2026 NOTHING BUT JAZZ RECORDS. All Rights Reserved.</p>
     </footer>
 
     <script>
@@ -354,12 +357,9 @@
             const isActive = navMenu.classList.toggle('active');
             menuToggle.classList.toggle('open');
             menuToggle.setAttribute('aria-expanded', isActive);
-            
-            // Prevent scrolling when menu is open
             document.body.style.overflow = isActive ? 'hidden' : 'auto';
         });
 
-        // Close menu when clicking a link
         document.querySelectorAll('.main-nav a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
@@ -376,55 +376,54 @@
             const dayNames = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
             const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
             
-            const showTemplate = (dayName, dateNumber, monthName, headliner, venue) => `
+            const showTemplate = (dayName, dateNumber, monthName, venue, time) => `
                 <article class="show-item">
-                    <span class="show-date">${dayName}. ${monthName} ${dateNumber}</span>
-                    <span class="show-headliner">${headliner}</span>
-                    <span class="show-venue">${venue}</span>
+                    <span class="show-day">${dayName}</span>
+                    <span class="show-date-small">${monthName} ${dateNumber}</span>
+                    <span class="show-venue-name">${venue}</span>
+                    <span class="show-time">${time}</span>
                 </article>
             `;
 
             const today = new Date();
             today.setHours(0, 0, 0, 0); 
-            const year = today.getFullYear();
-            const month = today.getMonth();
-            const daysInMonth = new Date(year, month + 1, 0).getDate();
             
             let datesArray = [];
 
-            // 1. ADD GRAVITAS (Feb 20th example)
-            const gravitasDate = new Date(year, month, 20); 
-            if (gravitasDate >= today) {
-                datesArray.push({
-                    fullDate: gravitasDate,
-                    day: dayNames[gravitasDate.getDay()],
-                    month: monthNames[gravitasDate.getMonth()],
-                    dateNum: gravitasDate.getDate(),
-                    headliner: "The Ice Gonzalez Quintet",
-                    venue: `<a href="#" target="_blank">Gravitas</a>`
-                });
-            }
+            // 14-day rolling window
+            for (let i = 0; i < 14; i++) {
+                let date = new Date(today);
+                date.setDate(today.getDate() + i);
+                
+                let dayOfWeek = date.getDay();
+                let dayStr = dayNames[dayOfWeek];
+                let monthStr = monthNames[date.getMonth()];
+                let dateNum = date.getDate();
 
-            // 2. ADD THURSDAYS (ADKT)
-            for (let i = 1; i <= daysInMonth; i++) {
-                const date = new Date(year, month, i);
-                if (date.getDay() === 4 && date >= today) { 
+                if (dayOfWeek === 4) { // THURSDAYS
                     datesArray.push({
-                        fullDate: date,
-                        day: dayNames[date.getDay()],
-                        month: monthNames[date.getMonth()],
-                        dateNum: date.getDate(),
-                        headliner: "The Ice Gonzalez Quintet",
-                        venue: `<a href="https://adktla.com/" target="_blank">ADKT</a>`
+                        day: dayStr, month: monthStr, dateNum: dateNum,
+                        venue: `<a href="https://www.adktla.com/" target="_blank">ADKT</a>`,
+                        time: "8:00 PM - 11:00 PM"
+                    });
+                } else if (dayOfWeek === 6) { // SATURDAYS
+                    datesArray.push({
+                        day: dayStr, month: monthStr, dateNum: dateNum,
+                        venue: `<a href="https://thebunbunla.com/" target="_blank">The Bun Bunn</a>`,
+                        time: "8:00 PM - 11:00 PM"
+                    });
+                } else if (dayOfWeek === 0) { // SUNDAYS
+                    datesArray.push({
+                        day: dayStr, month: monthStr, dateNum: dateNum,
+                        venue: `<a href="https://eugenesrestaurant.vercel.app/" target="_blank">Eugene's Restaurant</a>`,
+                        time: "1:00 PM - 4:30 PM"
                     });
                 }
             }
 
-            datesArray.sort((a, b) => a.fullDate - b.fullDate);
-            
-            list.innerHTML = datesArray.length ? '' : '<p style="text-align: center; font-style: italic; opacity: 0.7;">No upcoming shows this month. Check back soon!</p>';
+            list.innerHTML = datesArray.length ? '' : '<p style="text-align: center; font-style: italic; opacity: 0.7;">Check back soon for new dates!</p>';
             datesArray.forEach(show => {
-                list.innerHTML += showTemplate(show.day, show.dateNum, show.month, show.headliner, show.venue);
+                list.innerHTML += showTemplate(show.day, show.dateNum, show.month, show.venue, show.time);
             });
         }
         populateMonthlyShows();
